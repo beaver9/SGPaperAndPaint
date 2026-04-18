@@ -35,7 +35,7 @@ jobs:
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
-          hugo-version: '0.111.0'
+          hugo-version: 'latest'
           extended: true
       - name: Build And Deploy
         id: builddeploy
@@ -48,6 +48,8 @@ jobs:
           output_location: "public"
           app_build_command: 'hugo'
           github_id_token: ${{ steps.idtoken.outputs.result }}
+          oryx_builder_version: 'mcr.microsoft.com/oryx/builder:latest'
+
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
